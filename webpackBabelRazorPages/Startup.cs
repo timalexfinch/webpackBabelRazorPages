@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.SpaServices.Webpack;
+using System.IO;
 
 namespace webpackBabelRazorPages
 {
@@ -34,6 +36,11 @@ namespace webpackBabelRazorPages
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                //app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+                //{
+                //    ProjectPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"),
+                //    HotModuleReplacement = true
+                //});
             }
             else
             {
@@ -42,6 +49,7 @@ namespace webpackBabelRazorPages
             }
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
             app.UseMvc();
         }
     }
